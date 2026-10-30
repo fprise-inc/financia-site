@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>要望・不具合のご連絡 | ファイナンシア</title>
+<style>
+  body { margin: 0; font-family: system-ui, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; background: #f7f6f2; color: #222; }
+  main { max-width: 640px; margin: 0 auto; padding: 64px 16px; line-height: 1.8; }
+  h1 { font-size: 22px; margin: 0 0 12px; }
+  a { color: #1f4e8c; }
+</style>
+<script>
+  // アプリの「要望・不具合を送る」から開くページ。受付番号・アプリの版・OS だけを付けてフォームへ移る。
+  // フォームを替えるときは FORM の1行だけを書き換える（アプリは直さなくてよい）。
+  var FORM = "";
+  var KEYS = ["no", "ver", "os"];
+  (function () {
+    if (!FORM) return;
+    var src = new URLSearchParams(location.search);
+    var out = new URLSearchParams();
+    KEYS.forEach(function (k) { var v = src.get(k); if (v) out.set(k, v.slice(0, 40)); });
+    var q = out.toString();
+    location.replace(FORM + (q ? (FORM.indexOf("?") < 0 ? "?" : "&") + q : ""));
+  })();
+</script>
+</head>
+<body>
+<main>
+  <h1>要望・不具合のご連絡</h1>
+  <p id="msg">受け付けのフォームは準備中です。もうしばらくお待ちください。</p>
+</main>
+</body>
+</html>
